@@ -53,3 +53,26 @@ def test_explict_wait_samsung_syncmaster():
     time.sleep(10)  # Ждём 10 секунд, после них элемента уведомления гарантированно не должно быть в DOM дереве
     alert = driver.find_elements(By.XPATH, "//*[@class='fas fa-check-circle']")
     assert len(alert) == 0
+
+def test_explict_wait_test_conflict():
+    """В этом тесте всплывающее уведомление о добавлении в корзину принудительно не закрывается, поэтому прописан sleep
+        после которого проверяется отсутствие элемента уведомления в DOM дереве"""
+    driver.get(url)
+    driver.maximize_window()
+    title = driver.title
+    assert title == "Your Store"
+    time.sleep(2)  # sleep нужен что бы успел отрендерится блок с категориями товаров
+    element_menu_to_hover_over = driver.find_element(By.XPATH, '//a[contains(text(),"Components")]')
+    hover = ActionChains(driver).move_to_element(element_menu_to_hover_over)
+    hover.perform()
+    monitor_in_menu = driver.find_element(By.XPATH, '//a[contains(text(),"Monitors")]')
+    monitor_in_menu.click()
+    title_iphone = driver.title
+    assert title_iphone == "Monitors"
+    sync_master_card = driver.find_element(By.XPATH, '//a[contains(text(),"SyncMaster")]')
+    sync_master_card.click()
+    add_to_cart_button = driver.find_element(By.ID, 'button-cart')
+    add_to_cart_button.click()
+    time.sleep(10)  # Ждём 10 секунд, после них элемента уведомления гарантированно не должно быть в DOM дереве
+    alert = driver.find_elements(By.XPATH, "//*[@class='fas fa-check-circle']")
+    assert len(alert) == 0
