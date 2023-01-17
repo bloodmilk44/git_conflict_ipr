@@ -67,8 +67,8 @@ def test_explict_wait_test_conflict():
     hover.perform()
     monitor_in_menu = driver.find_element(By.XPATH, '//a[contains(text(),"Monitors")]')
     monitor_in_menu.click()
-    title_iphone = driver.title
-    assert title_iphone == "Monitors"
+    title_monitor = driver.title
+    assert title_monitor == "Monitors"
     sync_master_card = driver.find_element(By.XPATH, '//a[contains(text(),"SyncMaster")]')
     sync_master_card.click()
     add_to_cart_button = driver.find_element(By.ID, 'button-cart')
