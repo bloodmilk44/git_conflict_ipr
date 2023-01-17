@@ -29,6 +29,7 @@ def test_explict_wait_iphone():
     alert = driver.find_elements(By.XPATH, "//*[@class='fas fa-check-circle']")  # Так как прописано неявное
     # ожидаение, вебдрайвер ждёт элемент 10 секунд
     assert len(alert) == 0
+    assert 3 == 3
 
 
 def test_explict_wait_samsung_syncmaster():
