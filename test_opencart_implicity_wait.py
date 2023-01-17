@@ -29,7 +29,7 @@ def test_explict_wait_iphone():
     alert = driver.find_elements(By.XPATH, "//*[@class='fas fa-check-circle']")  # Так как прописано неявное
     # ожидаение, вебдрайвер ждёт элемент 10 секунд
     assert len(alert) == 0
-    assert 1 == 1
+    assert 3 == 3
 
 
 def test_explict_wait_samsung_syncmaster():
@@ -54,6 +54,7 @@ def test_explict_wait_samsung_syncmaster():
     time.sleep(10)  # Ждём 10 секунд, после них элемента уведомления гарантированно не должно быть в DOM дереве
     alert = driver.find_elements(By.XPATH, "//*[@class='fas fa-check-circle']")
     assert len(alert) == 0
+
 
 def test_explict_wait_test_conflict():
     """В этом тесте всплывающее уведомление о добавлении в корзину принудительно не закрывается, поэтому прописан sleep
